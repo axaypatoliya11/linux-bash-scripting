@@ -19,5 +19,5 @@ network)
     echo "system info is: $(ifconfig)"
     ;;
 *) #if none of the above is the case
-    echo "enter either time, host, network"
+    echo "enter either time, host or network"
 esac
