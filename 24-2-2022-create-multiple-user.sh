@@ -1,3 +1,5 @@
+# problem statement: Write the script for adding user
+
 #!/bin/bash
 
 # sudo -i
