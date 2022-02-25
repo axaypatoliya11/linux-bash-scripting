@@ -6,8 +6,10 @@ cd /
 dest=/tmp/passwd.output
 [ -f $dest ] || touch $dest
 
-read -p "enter the path: " fd
+read -p "enter the path: " 0> fd
 
-ls 
-find . $fd > $dest
+# ls 
+find . $fd 1> $dest
 # cp -a $fd . $dest
+
+

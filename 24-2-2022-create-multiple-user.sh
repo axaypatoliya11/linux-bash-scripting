@@ -1,4 +1,4 @@
-# problem statement: Write the script for adding user
+# problem statement: Write the script for adding multiple user
 
 #!/bin/bash
 
