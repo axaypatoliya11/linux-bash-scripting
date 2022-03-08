@@ -1,24 +1,32 @@
-#include <unistd.h>
 #include <sys/types.h>
-#include <stdio.h>
+#include <sys/stat.h>
 #include <fcntl.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-int main(int argc, const char *argv[])
-{
-    char random_garbage[8192]; /* Don't even bother to initialize */
-    int fd = -1;
-    if (argc < 2) {
-        fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
-        return 1;
-    }
-    fd = open(argv[1], O_WRONLY | O_CREAT | O_TRUNC, 0666);
-    if (fd < 0) {
-        perror("Can't open file: ");
-        return 2;
-    }
-    write(fd, random_garbage, 8192);
-    lseek(fd, 5 * 4096, SEEK_CUR);
-    write(fd, random_garbage, 8192);
-    close(fd);
-    return 0;
+char buf1[]="LAB ";
+char buf2[]="OS Linux";
+
+int main(){    
+	int fd;
+	if ((fd=creat("file.txt", 0666)) < 0) {
+		printf("Creation error");
+		exit(1);
+	}
+
+	if (write(fd, buf1, sizeof(buf1)) < 0){
+	    printf("Writing error");
+	    exit(2);
+	}
+
+	if (lseek(fd, 3996, SEEK_SET) < 0){
+	    printf("Positioning error");
+	    exit(3);
+	}
+
+	if (write(fd, buf2, sizeof(buf2)) < 0){
+	    printf("Writing error");
+	    exit(2);
+	}
 }
